@@ -95,7 +95,7 @@ dependencies {
     // Google Play Services
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
-    implementation(libs.play.services.navigation)
+    implementation(libs.androidx.navigation.compose)
 
     // DataStore
     implementation(libs.datastore.preferences)
