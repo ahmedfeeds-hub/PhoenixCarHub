@@ -18,13 +18,14 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Gradle
+        # This bypasses your uploaded wrapper and uses GitHub's fresh tools
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.5'
 
       - name: Build with Gradle
-        # This Pandroid flag is the "magic key" to skip the metadata errors you keep seeing
-        run: gradle assembleDebug -Pandroid.experimental.skipCheckDebugAarMetadata=true --no-daemon
+        # --continue lets it try to finish even if it hits a small metadata snag
+        run: gradle assembleDebug --no-daemon --continue
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
