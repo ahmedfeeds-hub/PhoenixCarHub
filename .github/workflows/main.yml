@@ -18,13 +18,12 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Gradle
-        # Bypasses the broken wrapper file in your repo
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.5'
 
       - name: Build with Gradle
-        # Skips the check for the non-existent navigation:18.1.0 library
+        # This Pandroid flag is the "magic key" to skip the metadata errors you keep seeing
         run: gradle assembleDebug -Pandroid.experimental.skipCheckDebugAarMetadata=true --no-daemon
 
       - name: Upload APK
